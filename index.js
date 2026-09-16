@@ -6,7 +6,7 @@ const port = 3000;// định nghĩa cổng
 // req gửi yêu cầu đi, nó là 1 object đối tượng
 // res phản hồi 
 app.get("/", (req, res) => {
-	res.send("Trang chủ");
+	res.send("Trang chủ 123");
 });
 
 app.get("/tours", (req, res) => {
