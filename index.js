@@ -1,16 +1,24 @@
 const express = require("express"); // nhúng thư viện express vào
+const path = require('path'); // thư viện có sẵn của node js
 const app = express();// gọi và khởi tạo app
 const port = 3000;// định nghĩa cổng
-
+// Thiết lập views
+app.set("views", path.join(__dirname, "views"));// dirname tên thư mục
+app.set("view engine", "pug");
 //đứng từ app gọi get để lấy ra giao diện
 // req gửi yêu cầu đi, nó là 1 object đối tượng
 // res phản hồi 
+// lấy file pug và render thành file html trả về giao diện HTMl đó
 app.get("/", (req, res) => {
-	res.send("Trang chủ 123");
+	res.render("client/pages/home", {
+		pageTitle: "Trang chủ",
+	});
 });
 
 app.get("/tours", (req, res) => {
-	res.send("Danh sách tour");
+	res.render("client/pages/tour-list", {
+		pageTitle: "Danh sách tour"
+	} )
 });
 
 // Khởi chạy dự án ở cổng 3000
