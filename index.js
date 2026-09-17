@@ -5,6 +5,8 @@ const port = 3000;// định nghĩa cổng
 // Thiết lập views
 app.set("views", path.join(__dirname, "views"));// dirname tên thư mục
 app.set("view engine", "pug");
+//Thiết lập thư mục chứa file tĩnh của frontend
+app.use(express.static(path.join(__dirname, "public")));
 //đứng từ app gọi get để lấy ra giao diện
 // req gửi yêu cầu đi, nó là 1 object đối tượng
 // res phản hồi 
