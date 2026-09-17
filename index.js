@@ -1,10 +1,9 @@
 const express = require("express"); // nhúng thư viện express vào
 const path = require("path"); // thư viện có sẵn của node js
+require('dotenv').config();
 const mongoose = require("mongoose");
-mongoose.connect(
-	"mongodb+srv://giangka20061005_db_user:XBoPV1NPRlBpsOMe@cluster0.5cv1rw2.mongodb.net/tour-management",
-);
-
+mongoose.connect(process.env.DATABASE);
+// yarn.cmd add dotenv
 const Tour = mongoose.model("Tour", { 
 	name: String,
 	vehicle: String
