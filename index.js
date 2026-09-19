@@ -3,9 +3,9 @@ const path = require("path"); // thư viện có sẵn của node js
 require('dotenv').config();
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE);
-// yarn.cmd add dotenv
-const Tour = require("./models/tour.model");
 
+const tourController = require("./controllers/client/tour.controller");
+const homeController = require("./controllers/client/home.controller");
 const app = express(); // gọi và khởi tạo app
 const port = 3000; // định nghĩa cổng
 
@@ -18,21 +18,9 @@ app.use(express.static(path.join(__dirname, "public")));
 // req gửi yêu cầu đi, nó là 1 object đối tượng
 // res phản hồi
 // lấy file pug và render thành file html trả về giao diện HTMl đó
-app.get("/", (req, res) => {
-	res.render("client/pages/home", {
-		pageTitle: "Trang chủ",
-	});
-});
+app.get("/", homeController.home);
 
-app.get("/tours", async (req, res) => {
-	const tourList = await Tour.find({});
-
-	console.log(tourList);
-	res.render("client/pages/tour-list", {
-		pageTitle: "Danh sách tour",
-		tourList: tourList
-	});
-});
+app.get("/tours", tourController.list);
 
 // Khởi chạy dự án ở cổng 3000
 app.listen(port, () => {
