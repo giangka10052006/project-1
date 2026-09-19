@@ -4,10 +4,7 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE);
 // yarn.cmd add dotenv
-const Tour = mongoose.model("Tour", { 
-	name: String,
-	vehicle: String
-});
+const Tour = require("./models/tour.model");
 
 const app = express(); // gọi và khởi tạo app
 const port = 3000; // định nghĩa cổng
