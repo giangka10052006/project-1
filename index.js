@@ -4,23 +4,25 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASE);
 
-const tourController = require("./controllers/client/tour.controller");
-const homeController = require("./controllers/client/home.controller");
+const clientRouters = require("./routers/client/index.router")
+
 const app = express(); // gọi và khởi tạo app
 const port = 3000; // định nghĩa cổng
 
 // Thiết lập views
 app.set("views", path.join(__dirname, "views")); // dirname tên thư mục
 app.set("view engine", "pug");
+
 //Thiết lập thư mục chứa file tĩnh của frontend
 app.use(express.static(path.join(__dirname, "public")));
 //đứng từ app gọi get để lấy ra giao diện
 // req gửi yêu cầu đi, nó là 1 object đối tượng
 // res phản hồi
 // lấy file pug và render thành file html trả về giao diện HTMl đó
-app.get("/", homeController.home);
 
-app.get("/tours", tourController.list);
+//Thiết lập đường dẫn
+app.use("/", clientRouters);
+
 
 // Khởi chạy dự án ở cổng 3000
 app.listen(port, () => {
