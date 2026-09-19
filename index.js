@@ -1,14 +1,15 @@
 const express = require("express"); // nhúng thư viện express vào
 const path = require("path"); // thư viện có sẵn của node js
 require('dotenv').config();
-const mongoose = require("mongoose");
-mongoose.connect(process.env.DATABASE);
+const database = require("./config/database")
 
 const clientRouters = require("./routers/client/index.router")
 
 const app = express(); // gọi và khởi tạo app
 const port = 3000; // định nghĩa cổng
 
+//Kết nối database
+database.connect();
 // Thiết lập views
 app.set("views", path.join(__dirname, "views")); // dirname tên thư mục
 app.set("view engine", "pug");
