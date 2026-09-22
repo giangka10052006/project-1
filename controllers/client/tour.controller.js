@@ -11,3 +11,12 @@ module.exports.list = async (req, res) => {
   });
 };
 
+module.exports.detail = async (req, res) => {
+	const tourList = await Tour.find({});
+
+	console.log(tourList);
+	res.render("client/pages/tour-detail", {
+		pageTitle: "Chi tiết tour",
+	});
+};
+
